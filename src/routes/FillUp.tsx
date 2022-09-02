@@ -2,8 +2,8 @@ import {useState} from 'react';
 import { useNavigate ,useLocation} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from "styled-components";
-import { ToDoState } from './Home';
 import {IToDo} from "../utils/types";
+import { ToDoState } from '../utils/atoms';
 
 
 const ModalDiv = styled.div`

@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import styled from "styled-components";
+import {useRecoilState } from 'recoil';
 import {Link, Outlet} from "react-router-dom";
-import { atom, useRecoilState } from 'recoil';
-import {IToDo} from "../utils/types";
+
 import ToDo from "./ToDo";
+import { ToDoState } from '../utils/atoms';
 
 
 
@@ -34,10 +35,7 @@ const AddNewTaskLink = styled(Link)`
     
 `
 
-export const ToDoState = atom<IToDo[]>({
-    key: 'ToDoState',
-    default: [],
-})
+
 
 function Home() {
     const [toDoList, setToDoList] = useRecoilState(ToDoState);
