@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 import {IToDo} from "../utils/types";
 import ToDo from "./ToDo";
 
@@ -11,7 +12,7 @@ const GirdContainer= styled.div`
 
 `
 
-const SubmitButton = styled.button`
+const AddNewTaskButton = styled.button`
     position: fixed;
     background-color:white;
     bottom : 3%;
@@ -22,6 +23,16 @@ const SubmitButton = styled.button`
 
 `
 
+const AddNewTaskLink = styled(Link)`
+    text-decoration:none;
+    &:link &:visited {
+        color : black
+    }
+    &:hover{
+        color : blue
+    }
+    
+`
 
 const testToDoObject:IToDo[] = [
     {title:'first title', content:'first content', id:1},
@@ -41,7 +52,7 @@ function Home() {
         <GirdContainer>
             {toDoList.map((toDo) => <ToDo DataInfo={toDo} key= {toDo.id} />)}
         </GirdContainer>
-        <SubmitButton>Submit</SubmitButton>
+        <AddNewTaskButton><AddNewTaskLink to ='/fillup'>Add New Task</AddNewTaskLink></AddNewTaskButton>
     </div>
   );
 }
