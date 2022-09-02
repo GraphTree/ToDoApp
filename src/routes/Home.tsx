@@ -33,13 +33,13 @@ interface IToDo {
 }
 
 
-function ToDO (){
+function ToDo ({DataInfo} : {DataInfo : IToDo}) {
     return(
         <GirdItem>
             <h3> Title </h3>
-            <TitleBox>title is</TitleBox>
+            <TitleBox>{DataInfo.title} is</TitleBox>
             <h3>Content</h3>
-            <ContentBox>content</ContentBox>
+            <ContentBox>{DataInfo.content}</ContentBox>
         </GirdItem>
     )
 }
@@ -55,12 +55,12 @@ const testToDoObject:IToDo[] = [
 
 function Home() {
     const [toDoList, setToDoList] = useState<IToDo[]>(testToDoObject);
-    
+    const testData:IToDo = {title:'title', content:'content', id:3}
 
   return (
     <div>
         <GirdContainer>
-            <ToDO/>
+            {toDoList.map((toDo) => <ToDo DataInfo={toDo} key= {toDo.id} />)}
         </GirdContainer>
     </div>
   );
