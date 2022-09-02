@@ -20,7 +20,6 @@ const AddNewTaskButton = styled.button`
     width : 4rem;
     height : 4rem;
     border-radius:70%
-
 `
 
 const AddNewTaskLink = styled(Link)`
@@ -34,26 +33,31 @@ const AddNewTaskLink = styled(Link)`
     
 `
 
-const testToDoObject:IToDo[] = [
+/* const testToDoObject:IToDo[] = [
     {title:'first title', content:'first content', id:1},
     {title:'second title', content:'second content', id:2},
     {title:'third title', content:'third content', id:3},
     {title:'fourth title', content:'fourth content', id:4},
     {title:'fifth title', content:'fifth content', id:5}
 ]
-
+ */
 
 function Home() {
-    const [toDoList, setToDoList] = useState<IToDo[]>(testToDoObject);
-    const testData:IToDo = {title:'title', content:'content', id:3}
-
+    const [toDoList, setToDoList] = useState<IToDo[]>([]);
+    const handleSetToDoList = (newToDo:IToDo) => {
+        setToDoList((prev)=> [...prev, newToDo])
+    }
   return (
     <div>
         <GirdContainer>
+            {toDoList.length === 0 ? <h1>There is no task yet</h1> : null }
             {toDoList.map((toDo) => <ToDo DataInfo={toDo} key= {toDo.id} />)}
         </GirdContainer>
+
+        <AddNewTaskButton>
+            <AddNewTaskLink to ='/fillup'>Add New Task</AddNewTaskLink>
+        </AddNewTaskButton>
         <Outlet/>
-        <AddNewTaskButton><AddNewTaskLink to ='/fillup'>Add New Task</AddNewTaskLink></AddNewTaskButton>
     </div>
   );
 }

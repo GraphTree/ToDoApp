@@ -12,11 +12,24 @@ function Router( ){
     return(
         <BrowserRouter>
           <Routes>
+
             <Route path="/" element={<Home />} >
                 <Route path="/fillup" element={<FillUp />} />
             </Route>
-            
+
+            <Route
+                path="*"
+                element={
+                    <div style={{ padding: "1rem" }}>
+                    <p>There's nothing here!</p>
+                  </div>
+                }
+                />
+
+
           </Routes>
+
+
         </BrowserRouter>
       );
 }
