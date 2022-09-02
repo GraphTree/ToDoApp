@@ -12,8 +12,10 @@ function Router( ){
     return(
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/fillup" element={<FillUp />} />
+            <Route path="/" element={<Home />} >
+                <Route path="/fillup" element={<FillUp />} />
+            </Route>
+            
           </Routes>
         </BrowserRouter>
       );

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import {IToDo} from "../utils/types";
 import ToDo from "./ToDo";
 
@@ -52,6 +52,7 @@ function Home() {
         <GirdContainer>
             {toDoList.map((toDo) => <ToDo DataInfo={toDo} key= {toDo.id} />)}
         </GirdContainer>
+        <Outlet/>
         <AddNewTaskButton><AddNewTaskLink to ='/fillup'>Add New Task</AddNewTaskLink></AddNewTaskButton>
     </div>
   );

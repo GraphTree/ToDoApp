@@ -1,20 +1,64 @@
 import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+
+
+const ModalDiv = styled.div`
+    width : 100%;
+    height : 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    background-color: rgba(0,0,0,0.5);
+`
+
+const Modal=styled.div`
+    width : 30%;
+    height : 50%;
+    background-color: white;
+    border-radius: 5px;
+    position : relative;
+    left : 35%;
+    top:20%
+`
+
+const Title=styled.h3`
+    text-align : center;
+    padding-top :5% ;
+    `
+const Content=styled(Title)`
+    padding-top : 0;`
+
 
 
 const TitleBox = styled.textarea`
 text-align : left;
-word-wrap: break-word
+width : 90%;
+left : 4%;
+position : relative;
+word-wrap: break-word;
 `
 
 const ContentBox = styled(TitleBox)`
 height : 200px;
 `
+const SubmitButton = styled.button`
+    position: relative;
+    background-color:white;
+    bottom : 0%;
+    left: 80%;
+    width : 3rem;
+    height : 3rem;
+    border-radius:70%;
+    font-size: 0.4rem;
+    margin-top:5%
+`    
 
 
 function FillUp(){
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
+    const navigate = useNavigate();
 
     const onChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTitle(e.currentTarget.value);
@@ -23,18 +67,30 @@ function FillUp(){
         setContent(e.currentTarget.value);
     }
 
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        navigate('/')
+
+    }
+
+    const onClickModalBackground = (e: React.MouseEvent<HTMLElement>) => {
+
+    }
 
 
     return (
-        <div>
-            <form>
-                <h3> Title </h3>
+        <ModalDiv onClick={onClickModalBackground}>
+        <Modal>
+            <form onSubmit={onSubmit}>
+                <Title> Title </Title>
                 <TitleBox onChange={onChangeTitle} value = {title} />
-                <h3>Content</h3>
+                <Content>Content</Content>
                 <ContentBox onChange={onChangeContent} value={content}/>
+                <SubmitButton>Submit</SubmitButton>
             </form>
 
-        </div>
+        </Modal>
+        </ModalDiv>
     )
 }
 
