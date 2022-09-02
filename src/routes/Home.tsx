@@ -4,7 +4,6 @@ import {IToDo} from "../utils/types";
 import ToDo from "./ToDo";
 
 
-    
 
 const GirdContainer= styled.div`
     display: grid;
@@ -12,7 +11,16 @@ const GirdContainer= styled.div`
 
 `
 
+const SubmitButton = styled.button`
+    position: fixed;
+    background-color:white;
+    bottom : 3%;
+    right : 3%;
+    width : 4rem;
+    height : 4rem;
+    border-radius:70%
 
+`
 
 
 const testToDoObject:IToDo[] = [
@@ -33,6 +41,7 @@ function Home() {
         <GirdContainer>
             {toDoList.map((toDo) => <ToDo DataInfo={toDo} key= {toDo.id} />)}
         </GirdContainer>
+        <SubmitButton>Submit</SubmitButton>
     </div>
   );
 }
