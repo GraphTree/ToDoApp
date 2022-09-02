@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import styled from "styled-components";
 import {Link, Outlet} from "react-router-dom";
+import { atom, useRecoilState } from 'recoil';
 import {IToDo} from "../utils/types";
 import ToDo from "./ToDo";
 
@@ -33,20 +34,14 @@ const AddNewTaskLink = styled(Link)`
     
 `
 
-/* const testToDoObject:IToDo[] = [
-    {title:'first title', content:'first content', id:1},
-    {title:'second title', content:'second content', id:2},
-    {title:'third title', content:'third content', id:3},
-    {title:'fourth title', content:'fourth content', id:4},
-    {title:'fifth title', content:'fifth content', id:5}
-]
- */
+export const ToDoState = atom<IToDo[]>({
+    key: 'ToDoState',
+    default: [],
+})
 
 function Home() {
-    const [toDoList, setToDoList] = useState<IToDo[]>([]);
-    const handleSetToDoList = (newToDo:IToDo) => {
-        setToDoList((prev)=> [...prev, newToDo])
-    }
+    const [toDoList, setToDoList] = useRecoilState(ToDoState);
+
   return (
     <div>
         <GirdContainer>
@@ -55,8 +50,9 @@ function Home() {
         </GirdContainer>
 
         <AddNewTaskButton>
-            <AddNewTaskLink to ='/fillup'>Add New Task</AddNewTaskLink>
+            <AddNewTaskLink to ={'/fillup'}   >Add New Task</AddNewTaskLink>
         </AddNewTaskButton>
+
         <Outlet/>
     </div>
   );

@@ -1,6 +1,9 @@
 import {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from "styled-components";
+import { ToDoState } from './Home';
+import {IToDo} from "../utils/types";
 
 
 const ModalDiv = styled.div`
@@ -54,8 +57,8 @@ const SubmitButton = styled.button`
     margin-top:5%
 `    
 
-
-function FillUp(){
+function FillUp() {
+    const [toDoList, setToDoList] = useRecoilState(ToDoState);
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
     const navigate = useNavigate();
@@ -69,6 +72,8 @@ function FillUp(){
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log(title, content);
+        setToDoList([...toDoList, {title, content, id: Date.now()}]);
         navigate('/')
 
     }
