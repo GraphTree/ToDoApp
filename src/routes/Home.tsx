@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import styled from "styled-components";
 
 
@@ -7,9 +8,7 @@ const GirdContainer= styled.div`
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-
 `
-
 const GirdItem = styled.div`
     text-align:center;
     background-color:lightblue;
@@ -27,6 +26,13 @@ const ContentBox = styled(TitleBox)`
 `
 
 
+interface IToDo {
+    title : String,
+    content : String,
+    id : number
+}
+
+
 function ToDO (){
     return(
         <GirdItem>
@@ -38,7 +44,19 @@ function ToDO (){
     )
 }
 
+const testToDoObject:IToDo[] = [
+    {title:'first title', content:'first content', id:1},
+    {title:'second title', content:'second content', id:2},
+    {title:'third title', content:'third content', id:3},
+    {title:'fourth title', content:'fourth content', id:4},
+    {title:'fifth title', content:'fifth content', id:5}
+]
+
+
 function Home() {
+    const [toDoList, setToDoList] = useState<IToDo[]>(testToDoObject);
+    
+
   return (
     <div>
         <GirdContainer>
